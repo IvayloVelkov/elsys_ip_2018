@@ -34,14 +34,11 @@ public class UserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
 		User user = userService.getByName(request.getParameter("name"));
-		if (user != null) {
-			out.print("Welcome, " + user.getName()+ ". Your email is: " + user.getEmail());
-		} else {
-			out.println("Welcome, anonymous.");
-		}
-		out.close();
+		response.setContentType("text/html");
+		request.setAttribute("user", user);	
+		getServletContext().getRequestDispatcher("/WEB-INF/user.jsp")
+			.forward(request, response);
 	}
 
 	/**
@@ -51,7 +48,10 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+		userService.updateExistingUser(request.getParameter("newName"),
+				  				       request.getParameter("newMail"),
+								       request.getParameter("oldName"));
 
+		response.sendRedirect("/admin");
+	}
 }

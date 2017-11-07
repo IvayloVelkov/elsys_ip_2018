@@ -11,13 +11,20 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.elsys.ip.servlet.controller.AdminServlet;
+import org.elsys.ip.servlet.model.User;
+import org.elsys.ip.servlet.service.UserService;
 
 /**
  * Servlet Filter implementation class LoginFilter
  */
 public class LoginFilter implements Filter {
 
+	private UserService service = new UserService();
+	
 	/**
 	 * Default constructor.
 	 */
@@ -42,7 +49,7 @@ public class LoginFilter implements Filter {
 		String password = request.getParameter("password");
 
 		boolean authorized = true;
-		
+
 		// check username and password (can be hardcoded, can use the userService)
 		// add if the person is logged in to a cookie (Google it), so that we do not check at every page
 		if (authorized) {

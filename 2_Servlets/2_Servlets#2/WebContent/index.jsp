@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>My first jsp</title>
+<title>Login Page</title>
 </head>
 <body>
-	<p>Hello, world!</p>
+	<p>Login</p>
 	<c:if test="${error != null}">
 		<p>${error}</p>
 	</c:if>

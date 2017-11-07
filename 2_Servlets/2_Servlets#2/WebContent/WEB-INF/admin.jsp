@@ -23,5 +23,9 @@
 			</tr>
 		</c:forEach>
 	</table>
+
+	<form action="add" method="get">
+		<input type="submit" value="Add new user" />
+	</form>
 </body>
 </html>

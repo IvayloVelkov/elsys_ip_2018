@@ -9,8 +9,10 @@ public class UserService {
 	private static List<User> users = new ArrayList<>();
 
 	public UserService() {
-		users.add(new User(1, "admin", "admin@admin.bg"));
-		users.add(new User(2, "user", "user@user.bg"));
+		if (users.isEmpty()) {
+			users.add(new User(1, "admin", "admin@admin.bg"));
+			users.add(new User(2, "user", "user@user.bg"));
+		}
 	}
 
 	public List<User> getUsers() {
@@ -24,5 +26,16 @@ public class UserService {
 		} else {
 			return null;
 		}
+	}
+
+	public void addNewUser(User user) {
+		getUsers().add(user);
+	}
+
+	public void updateExistingUser(String newName, String newEmail, String oldName) {
+		User oldUser = getByName(oldName);
+
+		oldUser.setName(newName);
+		oldUser.setEmail(newEmail);
 	}
 }
